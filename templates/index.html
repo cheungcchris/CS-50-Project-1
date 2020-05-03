@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {%if message !=""%}
+    	{{message}}
+    {% endif %}
+    <div>Login</div>
+    
+
+{% endblock %}
+
+{% block body %}
+    <form action="{{ url_for('hello') }}" method="post" style="text-align: center;">
+    	<div>
+        	<input type="text" autocomplete="off" name="name" placeholder="Username" style="margin:5px">
+    	</div>
+    	<div>
+        	<input type="Password" name="passw" placeholder="Password" >
+        </div>
+        <div >
+        	<button  style="margin: 20px">Login</button>
+        	
+        </div>
+    </form>
+
+    <form action="{{ url_for('register') }}" method="post" style="text-align: center;">
+    	<button>Register</button>
+    </form>
+    
+{% endblock %}

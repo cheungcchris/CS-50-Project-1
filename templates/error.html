@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{message}}
+{% endblock %}
+
+{% block body %}
+	{%if message=="Username and/or Password do not match!"%}
+		<form action="{{ url_for('index') }}" method="get" style="text-align: center;">
+        	<button>Back to Home Page</button>
+    	</form>
+    {%else%}
+    	<form action="{{ url_for('register') }}" method="get" style="text-align: center;">
+        	<button>Back to Register</button>
+    	</form>
+
+    {%endif%}
+
+
+{% endblock %}

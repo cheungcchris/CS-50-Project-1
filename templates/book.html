@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    
+{% endblock %}
+
+{% block body %}
+    <div> <h4>ISBN: {{ book.isbn }}</h4></div>
+    <div> <h4>Title: {{ book.title }}</h4></div>
+    <div> <h4>Author: {{ book.author }}</h4></div>
+    <div> <h4>Year Published: {{ book.year }}</h4></div>
+
+    <form action="{{ url_for('search',search_text=search_text) }}" method="get" ;>
+        <button>Back to Search</button>
+    </form>
+
+    <h5>Submit your Review</h5>
+    {%if not reviewed%}
+        <form action="{{url_for('book',book_isbn=book.isbn)}}" method="post";>
+            <div class="col-4">
+                <textarea class="form-control" rows="3" name="review" placeholder="Write Your Review" required></textarea>
+            </div>
+            <div class="col-4">
+                <input type="number" min="1" max="5" autocomplete="off" name="rating" placeholder="1-5" style="margin-bottom:10px" required>
+            </div>
+            <div>
+                <button style="margin-left: 15px">Submit Review</button>
+            </div>
+        </form>
+    {%endif%}
+
+    <h5 style="margin-top:10px">User Ratings</h5>
+    {%if reviews==[]%}
+        <div>No reviews yet!</div>
+    {%else%}
+        <table style="width:30%" class="table table-bordered table-sm" border="2px">
+            <thead>
+                <tr>
+                    <th>Reviewer</th>
+                    <th>Review</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            {%for review in reviews%}
+                <tr>
+                    <td>{{review.reviewer_name}}</td>
+                    <td>{{review.review}}</td>
+                    <td>{{review.rating}}</td>
+                </tr>
+            {%endfor%}
+        </table>
+    {%endif%}
+
+    <h5 style="margin-top:10px">GoodReads Ratings</h5>
+    {%if gr_info ==[]%}
+        <div>None Available</div>
+    {%else%}
+        <div>{{gr_info[0]}} / 5</div>
+        <div>Number of Reviews: {{gr_info[1]}}</div>
+    {%endif%}
+
+    
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Hello {{name}}!
+{% endblock %}
+
+{% block body %}
+
+	<form action="{{ url_for('index') }}" method="get" style="text-align: center;">
+        <button style="margin: 10px">Back to Home Page</button>
+    </form>
+    <form action="{{ url_for('logout') }}" method="get" style="text-align: center;">
+        <button style="margin: 10px">Logout</button>
+    </form>
+    <form action="{{ url_for('search') }}" method="get" style="text-align: center;">
+        <button style="margin: 10px">Go to Search</button>
+    </form>
+
+
+
+{% endblock %}
